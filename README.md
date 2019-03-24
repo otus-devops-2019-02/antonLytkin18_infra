@@ -28,3 +28,7 @@ Host someinternalhost
 bastion_IP = 104.199.59.234
 someinternalhost_IP = 10.132.0.3
 ```
+
+**Задание 3.1**. Реализовано использование валидного сертификата с помощью сервиса `sslip.io`:
+
+https://104.199.59.234.sslip.io
