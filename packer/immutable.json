@@ -1,0 +1,36 @@
+{
+  "variables": {
+    "project_id": "instant-river-211419",
+    "image_family": "reddit-full",
+    "source_image": "reddit-base-1553973924",
+    "source_image_family": "reddit-base"
+  },
+  "builders": [
+    {
+      "type": "googlecompute",
+      "project_id": "{{user `project_id`}}",
+      "image_name": "reddit-full-{{timestamp}}",
+      "image_family": "{{user `image_family`}}",
+      "image_description": "A reddit app",
+      "source_image": "{{user `source_image`}}",
+      "source_image_family": "{{user `source_image_family`}}",
+      "zone": "europe-west1-b",
+      "ssh_username": "appuser",
+      "machine_type": "{{user `machine_type`}}",
+      "disk_type": "pd-standard",
+      "disk_size": "15"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "files/deploy.sh",
+      "execute_command": "sudo {{.Path}}"
+    },
+    {
+      "type": "shell",
+      "script": "files/start_puma_service.sh",
+      "execute_command": "sudo {{.Path}}"
+    }
+  ]
+}
