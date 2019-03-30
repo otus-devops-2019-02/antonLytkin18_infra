@@ -66,3 +66,24 @@ $ gcloud compute firewall-rules create default-puma-server \
 testapp_IP = 35.229.62.122
 testapp_port = 9292
 ```
+
+### Домашнее задание №5
+
+1. Для запуска сборки образа, необходимо выполнить команду:
+
+`$ packer build -var-file variables.json ubuntu16.json`
+
+2. Для запуска сборки образа с установленным приложением и автозапуском сервера, необходимо выполнить команду:
+
+`$ packer build immutable.json`
+
+3. Для создания инстанса `immutable`, необходимо выполнить команду:
+```
+$ gcloud compute instances create reddit-app-full \
+    --zone="europe-west1-b" \
+    --boot-disk-size=15GB \
+    --image reddit-full-1553977853 \
+    --machine-type=f1-micro \
+    --tags puma-server \
+    --restart-on-failure
+```
