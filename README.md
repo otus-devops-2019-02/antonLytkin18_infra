@@ -73,11 +73,10 @@ testapp_port = 9292
 
 `$ packer build -var-file variables.json ubuntu16.json`
 
-2. Для запуска сборки образа с установленным приложением и автозапуском сервера, необходимо выполнить команду:
+2. Для запуска сборки образа `reddit-full` с установленным приложением и автозапуском сервера, необходимо выполнить команду:
 
 `$ packer build immutable.json`
 
-3. Для создания инстанса c образом `immutable`, необходимо выполнить команду:
-```
-$ ./config-scripts/create-reddit-vm.sh
-```
+3. Для создания инстанса c образом `reddit-full`, необходимо выполнить команду:
+
+`$ ./config-scripts/create-reddit-vm.sh`
