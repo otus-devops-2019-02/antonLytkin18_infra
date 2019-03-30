@@ -77,7 +77,7 @@ testapp_port = 9292
 
 `$ packer build immutable.json`
 
-3. Для создания инстанса `immutable`, необходимо выполнить команду:
+3. Для создания инстанса c образом `immutable`, необходимо выполнить команду:
 ```
 $ gcloud compute instances create reddit-app-full \
     --zone="europe-west1-b" \
