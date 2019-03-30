@@ -11,7 +11,10 @@
       "ssh_username": "appuser",
       "machine_type": "{{user `machine_type`}}",
       "disk_type": "pd-standard",
-      "disk_size": "15"
+      "disk_size": "15",
+      "tags": [
+        "reddit-app"
+      ]
     }
   ],
   "provisioners": [
