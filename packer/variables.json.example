@@ -1,0 +1,5 @@
+{
+  "project_id": "gcp-project-id",
+  "image_family": "gcp-source-image-family",
+  "source_image_family": "gcp-source-image-family"
+}
