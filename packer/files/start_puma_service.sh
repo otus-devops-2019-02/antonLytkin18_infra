@@ -10,6 +10,7 @@ After=network.target mongod.service
 User=appuser
 WorkingDirectory=/home/appuser/reddit
 ExecStart=/usr/local/bin/puma -d
+RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target
 EOF
