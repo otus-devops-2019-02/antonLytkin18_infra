@@ -66,3 +66,17 @@ $ gcloud compute firewall-rules create default-puma-server \
 testapp_IP = 35.229.62.122
 testapp_port = 9292
 ```
+
+### Домашнее задание №5
+
+1. Для запуска сборки образа, необходимо выполнить команду:
+
+`$ packer build -var-file variables.json ubuntu16.json`
+
+2. Для запуска сборки образа `reddit-full` с установленным приложением и автозапуском сервера, необходимо выполнить команду:
+
+`$ packer build immutable.json`
+
+3. Для создания инстанса c образом `reddit-full`, необходимо выполнить команду:
+
+`$ ./config-scripts/create-reddit-vm.sh`
