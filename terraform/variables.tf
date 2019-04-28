@@ -20,3 +20,7 @@ variable private_key_path {
 variable disk_image {
   description = "Disk image"
 }
+
+variable "zone" {
+  default = "europe-west1-b"
+}
