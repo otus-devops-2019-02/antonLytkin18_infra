@@ -21,6 +21,11 @@ variable disk_image {
   description = "Disk image"
 }
 
-variable "zone" {
+variable zone {
   default = "europe-west1-b"
+}
+
+variable count {
+  description = "Instances count"
+  default     = 1
 }
