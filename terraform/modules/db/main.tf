@@ -36,7 +36,6 @@ resource "google_compute_instance" "db" {
       "sudo systemctl restart mongod",
     ]
   }
-
 }
 
 # Правило firewall
