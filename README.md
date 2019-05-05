@@ -106,3 +106,28 @@ resource "google_compute_instance" "app" {
   count        = "${var.count}"
 }
 ```
+### Домашнее задание №7
+
+1. Создан модуль `vpc`, принимающий на входе параметр `source_ranges`, хранящий список допустимых
+IP-адресов, с которых может производиться подключение к ВМ по `ssh`.
+2. Созданы окружения `stage` и `prod`, отличие которых заключается в ограничении доступа по `ssh` с определенного IP-адреса
+для окружения `prod`.
+3. В каждом из окружений настроено удаленное хранение `state-файла` в `Google Cloud Storage`.
+4. Добавлен запуск необходимых процедур в модули:
+- `app`. Добавление переменной окружения `DATABASE_URL`, хранящей внутренний IP-адрес ВМ с `mongoDb` в `puma.env`:
+ ````
+provisioner "remote-exec" {
+    inline = [
+        "sudo echo DATABASE_URL=${var.db_ip} > /tmp/puma.env",
+    ]
+}
+ ````
+- `db`. Возможность подключения к `mongoDb` с любого IP:
+````
+provisioner "remote-exec" {
+    inline = [
+        "sudo sed -i 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/' /etc/mongod.conf",
+        "sudo systemctl restart mongod",
+    ]
+} 
+````
