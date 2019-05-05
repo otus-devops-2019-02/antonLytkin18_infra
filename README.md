@@ -106,6 +106,7 @@ resource "google_compute_instance" "app" {
   count        = "${var.count}"
 }
 ```
+
 ### Домашнее задание №7
 
 1. Создан модуль `vpc`, принимающий на входе параметр `source_ranges`, хранящий список допустимых
@@ -131,3 +132,10 @@ provisioner "remote-exec" {
     ]
 } 
 ````
+
+### Домашнее задание №8
+
+1. Генерация `inventory.json` производится динамически с помощью скрипта `inventory.py`. Для получения IP-адресов
+виртуальных машин используется команда `$ terraform output -json`, запускаемая с помощью модуля python'а `subprocess`.
+2. Для проверки соединения необходимо запустить команду:
+`$ ansible all -m ping -i inventory.py`
