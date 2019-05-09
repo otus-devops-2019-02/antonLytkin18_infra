@@ -139,3 +139,37 @@ provisioner "remote-exec" {
 виртуальных машин используется команда `$ terraform output -json`, запускаемая с помощью модуля python'а `subprocess`.
 2. Для проверки соединения необходимо запустить команду:
 `$ ansible all -m ping -i inventory.py`
+
+### Домашнее задание №9
+
+1. В файл конфигурации `ansible.cnf` был установен путь к динамическому `inventory`, позволяющий получать IP-адреса
+для хостов `app` и `db` на лету:
+````
+inventory = ./inventory.py
+````
+
+2. Реализован оптимальный подход к написанию сценариев - несколько `playbook`ов. Для их запуска необходимо выполнить команду:
+`$ ansible-playbook site.yml`
+
+3. Реализован запуск `playbook`ов на уровне `provisioner`ов при запуске `packer`а:
+
+````
+  "provisioners": [
+    {
+      "type": "ansible",
+      "playbook_file": "ansible/packer_app.yml"
+    }
+  ]
+  
+  "provisioners": [
+      {
+        "type": "ansible",
+        "playbook_file": "ansible/packer_db.yml"
+      }
+  ]
+````
+Для запуска генерации образов, необходимо выполнить команды:
+
+`$ packer build -var-file packer/variables.json packer/app.json`
+
+`$ packer build -var-file packer/variables.json packer/db.json`
