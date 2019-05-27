@@ -28,12 +28,12 @@
   "provisioners": [
     {
       "type": "shell",
-      "script": "files/deploy.sh",
+      "script": "{{template_dir}}/files/deploy.sh",
       "execute_command": "sudo {{.Path}}"
     },
     {
       "type": "shell",
-      "script": "files/start_puma_service.sh",
+      "script": "{{template_dir}}/files/start_puma_service.sh",
       "execute_command": "sudo {{.Path}}"
     }
   ]
