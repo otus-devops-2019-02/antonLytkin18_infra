@@ -175,3 +175,29 @@ inventory = ./inventory.py
 `$ packer build -var-file packer/variables.json packer/app.json`
 
 `$ packer build -var-file packer/variables.json packer/db.json`
+
+### Домашнее задание №10
+
+1. Добавлен вызов роли `jdauphant.nginx` в playbook `app.yml`. Конфигурация для открытия `80` порта описана в файлах,
+хранящих переменные для соответствующих окружений (групп хостов):
+````
+/ansible/environments/stage/group_vars/app
+/ansible/environments/prod/group_vars/app
+````
+
+Для применения изменений необходимо выполнить команду:
+
+`$ cd ansible && ansible-playbook playbooks/site.yml`
+
+2. Настроено использование динамического `inventory` для окружений `stage` и `prod`:
+````
+/ansible/environments/stage/inventory.py
+/ansible/environments/prod/inventory.py
+````
+
+3. Реализованы дополнительные проверки для `travis-ci` в скрипте `/travis.sh`.
+Был подготовлен `docker`-образ со всеми необходимыми пакетами, необходимыми для корректного запуска данного скрипта:
+
+`$ docker run  -v `pwd`:`pwd` -w `pwd` -i -t antonlytkin/otus-ci ./travis.sh`
+
+В качестве промежуточного тестирования проверок в `travis-ci` был использован функционал `trytravis`.
