@@ -1,6 +1,8 @@
 # antonLytkin18_infra
 antonLytkin18 Infra repository
 
+[![Build Status](https://travis-ci.com/otus-devops-2019-02/antonLytkin18_infra.svg?branch=ansible-3)](https://travis-ci.com/otus-devops-2019-02/antonLytkin18_infra)
+
 ### Домашнее задание №3
 
 **Задание 1**. Для подключения к `someinternalhost` в одну строку, необходимо выполнить команду:
