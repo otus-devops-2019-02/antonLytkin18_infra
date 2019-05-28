@@ -12,9 +12,12 @@ class InventoryGenerator:
         'db_external_ip': 'db'
     }
 
+    terraform_dir_path = '/../../../terraform/prod/'
+
     def __init__(self):
         self._hosts = {}
-        os.chdir('../terraform/stage/')
+        current_path = os.path.dirname(os.path.realpath(__file__))
+        os.chdir(current_path + self.terraform_dir_path)
         terraform_result = subprocess.check_output(['terraform', 'output', '-json'])
         for key, item in json.loads(terraform_result).iteritems():
             self._hosts[key] = item['value']
