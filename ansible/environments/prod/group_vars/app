@@ -1,4 +1,5 @@
 db_host: 10.132.0.13
+deploy_user: appuser
 nginx_sites:
   default:
       - listen 80
