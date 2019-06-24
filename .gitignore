@@ -7,6 +7,7 @@ variables.json
 .terraform/
 *.retry
 jdauphant.nginx
+ansible/roles/db
 
 # Vagrant & molecule
 .vagrant/
