@@ -201,3 +201,45 @@ inventory = ./inventory.py
 `$ docker run  -v `pwd`:`pwd` -w `pwd` -i -t antonlytkin/otus-ci ./travis.sh`
 
 В качестве промежуточного тестирования проверок в `travis-ci` был использован функционал `trytravis`.
+
+### Домашнее задание №11
+
+1. Реализована доступность приложения по `80` порту с помощью переменных роли `jdauphant.nginx` в `Vagrantfile`'е:
+````
+ansible.extra_vars = {
+    "nginx_sites" => {
+        "default" => [
+            "listen 80",
+            "server_name 'reddit'",
+            "location / { proxy_pass http://127.0.0.1:9292; }"
+        ]
+    }
+}
+````
+2. Написан тест, позволяющий определить доступность БД по порту `27017`:
+
+````python
+def test_correct_db_port(host):
+    port = 27017
+    config_file = host.file('/etc/mongod.conf')
+    assert config_file.contains(f"port: {port}")
+    assert host.socket(f"tcp://{port}").is_listening
+
+````
+
+3. Переписаны playbook'и `packer_app.yml` и `packer_db.yml` на работу с ролями:
+````
+"provisioners": [
+    {
+        "type": "ansible",
+        "playbook_file": "{{ template_dir }}/../ansible/playbooks/app.yml",
+        "extra_arguments": ["--tags", "ruby"],
+        "ansible_env_vars": ["ANSIBLE_ROLES_PATH={{ template_dir }}/../ansible/roles"]
+    }
+]
+````
+4. Вынесена роль `db` в отдельный репозиторий:
+````yaml
+- src: https://github.com/antonLytkin18/db.ansible.role
+  name: db
+````
