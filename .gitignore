@@ -7,3 +7,13 @@ variables.json
 .terraform/
 *.retry
 jdauphant.nginx
+ansible/roles/db
+
+# Vagrant & molecule
+.vagrant/
+*.log
+*.pyc
+.molecule
+.cache
+.pytest_cache
+venv/
